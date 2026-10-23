@@ -6,9 +6,14 @@ nav_order: 6
 
 ## Running MQTTSubscribe with WeeWX
 
-If running as a driver follow [these instructions]($WEECTL station reconfigure --driver=user.MQTTSubscribe --no-prompt)
-to set the driver to `MQTTSubscribe`.
+Follow the local [configuration workflow](../readme.md#configure-mqttsubscribe)
+after installing the fixed archive. For driver mode, initialize the shell
+variables described there, then select the installed lowercase module:
 
-If running as a service, follow [these](https://github.com/weewx-mqtt/subscribe#if-running-as-a-service-enable-it) to enable it.
+```sh
+$WEECTL station reconfigure --driver=user.mqttsubscribe --config "$CONFIG_FILE" --no-prompt
+```
 
-Then update WeeWX's configuration via [these instructions](https://github.com/weewx-mqtt/subscribe#update-weewx-with-mqttsubscribes-configuration).
+For service mode, keep your station driver and
+[enable the service](../readme.md#if-running-as-a-service-enable-it).
+Then [import the configuration](../readme.md#update-weewxconf) and restart WeeWX.

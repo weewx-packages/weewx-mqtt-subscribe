@@ -36,7 +36,7 @@ is a reference of the most common options.
 [MQTTSubscribeService or MQTTSubscribeDriver]
     # The driver to use.
     # Only used by the driver.
-    driver = user.MQTTSubscribe
+    driver = user.mqttsubscribe
 
     # Turn the service on and off.
     # Default is true.

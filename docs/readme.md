@@ -38,10 +38,10 @@ It can be controlled more granularly by setting adjust_end_time to the number of
 ## Installation notes
 
 **For historical version 2.x instructions see,
-[Installing and Updating Version 2.X and Earlier](https://weewx-mqtt.github.io/subscribe/reference/installing-and-updating-version-2.x-and-earlier).**
+[Installing and Updating Version 2.X and Earlier](reference/installing-and-updating-version-2.x-and-earlier.md).**
 
 **For historical WeeWX 4.x instructions see,
-[Installing and updating version 3.x with WeeWX 4.x](https://weewx-mqtt.github.io/subscribe/reference/installing-and-updating-version-3.x--with-weewx-4.x)**
+[Installing and updating version 3.x with WeeWX 4.x](reference/installing-and-updating-version-3.x--with-weewx-4.x.md)**
 
 **Note:** It is rare that MQTTSubscribe should be configured to run as both a `service` and `driver`.
 If you are augmenting an existing driver's data, run MQTTSubscribe as a `service`. Otherwise, run it as a `driver`.
@@ -178,7 +178,7 @@ Edit the `mqttsubscribe.template.conf` file
 ### If running as a driver, set driver to MQTTSubscribe
 
 ```
-$WEECTL station reconfigure --driver=user.mqttsubscribe --no-prompt
+$WEECTL station reconfigure --driver=user.mqttsubscribe --config "$CONFIG_FILE" --no-prompt
 ```
 
 ### If running as a service, enable it

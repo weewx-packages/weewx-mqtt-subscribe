@@ -10,7 +10,7 @@ This has the following advantages.
 - It is easy to increase logging to the `debug` level.
 - Logging can easily be redirected to a different location.
 
-After [initializing MQTTSubscribes context](https://github.com/weewx-mqtt/subscribe?tab=readme-ov-file#initialize-mqttsubscribes-runtime),
+After [initializing MQTTSubscribes context](../readme.md#initialize-mqttsubscribes-runtime),
 the invocation would look something like this.
 
 ```
