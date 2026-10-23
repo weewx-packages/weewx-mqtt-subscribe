@@ -1,10 +1,10 @@
 ---
-title: Multiple Type Example 
+title: Multiple Type Example
 nav_order: 12
 ---
 
-In this example, some topics will have data in the [individual](individual-example.md) format
-and some topics will have data in the [json](json-example.md) format.
+In this example, some topics will have data in the [individual](../example-individual/index.md) format
+and some topics will have data in the [json](../example-json/index.md) format.
 
 1. On `topic/temp1`, a temperature is published in the message.
 This tempurature is measured in Celsius, but needs to stored as Farenheit.
@@ -37,7 +37,7 @@ is a reference of the most common options.
     # The driver to use.
     # Only used by the driver.
     driver = user.MQTTSubscribe
-    
+
     # Turn the service on and off.
     # Default is true.
     # Only used by the service.
@@ -53,7 +53,7 @@ is a reference of the most common options.
 
     [[topics]]
         # Configuration for the message callback.
-        [[[message]]] 
+        [[[message]]]
             # The format of the MQTT payload.
             # Currently support: individual, json, keyword
             # Must be specified here or at the topic level
@@ -74,7 +74,7 @@ is a reference of the most common options.
             units = degree_C
 
         [[[topic/outTemp]]]
-        
+
         [[[topic/json]]]
             # Set the 'type' for this topic to json.
             [[[[message]]]]
@@ -88,5 +88,5 @@ is a reference of the most common options.
                 # Useful if this field's units differ from the topic's unit_system's units.
                 # Valid values: see, https://weewx.com/docs/5.0/reference/units/
                 # Default is not set
-                units = degree_C        
+                units = degree_C
 ```

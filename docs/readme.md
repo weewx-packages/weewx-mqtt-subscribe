@@ -37,10 +37,10 @@ It can be controlled more granularly by setting adjust_end_time to the number of
 
 ## Installation notes
 
-**To install version 2.x and prior see,
+**For historical version 2.x instructions see,
 [Installing and Updating Version 2.X and Earlier](https://weewx-mqtt.github.io/subscribe/reference/installing-and-updating-version-2.x-and-earlier).**
 
-**To install version 3.x with WeeWX 4.x see,
+**For historical WeeWX 4.x instructions see,
 [Installing and updating version 3.x with WeeWX 4.x](https://weewx-mqtt.github.io/subscribe/reference/installing-and-updating-version-3.x--with-weewx-4.x)**
 
 **Note:** It is rare that MQTTSubscribe should be configured to run as both a `service` and `driver`.
@@ -63,12 +63,12 @@ The notation vX.Y.Z designates the version of MQTTSubscribe being installed.
 
 ## Prerequisites
 
-* Python 3.7 or higher
+* Python 3.10–3.14 for the catalog archive
 * [Paho MQTT Python client](https://pypi.org/project/paho-mqtt/)
 
 ## Initial installation
 
-**Note, for package installs:**  
+**Note, for package installs:**
 If you just installed WeeWX, you may need to create a new shell/terminal or logout/login
 for the user that installed WeeWX to have permission to update WeeWX.
 For more information see [Understanding permissions](https://github.com/weewx/weewx/wiki/Understanding-permissions#the-weewx-user-and-group)
@@ -129,24 +129,20 @@ WEECTL=$WEEWX_REPO/bin/weectl
 
 ### Install MQTTSubscribe
 
-#### Set the desired MQTTSubscribe version
+Use the repaired catalog prerelease with stock WeeWX 5:
 
-For example, if the desired version is 2.3.1.
-
-```
-MQTTSUBSCRIBE_VERSION=2.3.1
+```sh
+$WEECTL extension install https://github.com/weewx-packages/catalog/releases/download/mqtt-subscribe/v3.2.1rc1.post20261022/mqtt-subscribe-3.2.1rc1.post20261022.tar.gz --config "$CONFIG_FILE"
 ```
 
-#### Perform the installation
-
-```
-$WEECTL extension install https://github.com/weewx-mqtt/subscribe/archive/refs/tags/v${MQTTSUBSCRIBE_VERSION}.zip
-```
+This is `3.2.1rc1.post20261022`, based on upstream `3.2.1-rc01a`.
+The package-ID syntax is not a stock WeeWX command. For supported versions and
+managed paths, see the [README](../README.md).
 
 ### Create an example configuration
 
 ```
-python3 $USER_ROOT/MQTTSubscribe.py configure --create-example mqttsubscribe.template.conf
+PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe configure --create-example mqttsubscribe.template.conf
 ```
 
 ### Configure MQTTSubscribe
@@ -166,17 +162,17 @@ Edit the `mqttsubscribe.template.conf` file
 ### Validate and test the configuration
 
 ```
-    python3 $USER_ROOT/MQTTSubscribe.py configure $RUN_MODE --validate --conf mqttsubscribe.template.conf
+    PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe configure $RUN_MODE --validate --conf mqttsubscribe.template.conf
 ```
 
  ```
-    python3 $USER_ROOT/MQTTSubscribe.py simulate $RUN_MODE --conf mqttsubscribe.template.conf
+    PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe simulate $RUN_MODE --conf mqttsubscribe.template.conf
  ```
 
   Additional information on running MQTTSubscribe in configuration mode can be found at this [page](https://weewx-mqtt.github.io/subscribe/configurator-mode/).
-  
+
   Additional information on running MQTTSubscribe in simulation mode can be found at this [page](https://weewx-mqtt.github.io/subscribe/simulator-mode/).
-  
+
 ### Stop WeeWX
 
 ### If running as a driver, set driver to MQTTSubscribe
@@ -188,48 +184,48 @@ $WEECTL station reconfigure --driver=user.mqttsubscribe --no-prompt
 ### If running as a service, enable it
 
 ```
-python3 $USER_ROOT/MQTTSubscribe.py configure service --enable true --conf mqttsubscribe.template.conf
+PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe configure service --enable true --conf mqttsubscribe.template.conf
 ```
 
 ### Update `weewx.conf`
 
     ```
-    python3 $USER_ROOT/MQTTSubscribe.py configure $RUN_MODE --replace-with mqttsubscribe.template.conf --conf $CONFIG_FILE
+    PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe configure $RUN_MODE --replace-with mqttsubscribe.template.conf --conf $CONFIG_FILE
     ```
 
 ### Restart WeeWX
 
 ## Updating MQTTSubscribe
 
-1. [Initialize MQTTSubscribe's runtime](https://github.com/weewx-mqtt/subscribe?tab=readme-ov-file#initialize-mqttsubscribes-runtime)
+1. [Initialize MQTTSubscribe's runtime](readme.md#initialize-mqttsubscribes-runtime)
 2. Stop WeeWX
-3. [Install MQTTSubscribe](https://github.com/weewx-mqtt/subscribe#install-mqttsubscribe)
+3. [Install MQTTSubscribe](readme.md#install-mqttsubscribe)
 4. Validate and test the new against current configuration
 
     ```
-    python3 $USER_ROOT/MQTTSubscribe.py configure $RUN_MODE --validate --conf $CONFIG_FILE
+    PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe configure $RUN_MODE --validate --conf $CONFIG_FILE
     ```
 
     ```
-    python3 $USER_ROOT/MQTTSubscribe.py simulate $RUN_MODE --conf $CONFIG_FILE
+    PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe simulate $RUN_MODE --conf $CONFIG_FILE
     ```
 
 5. Restart WeeWX
 
 ## Reconfiguring MQTTSubscribe
 
-1. [Initialize MQTTSubscribe's runtime](https://github.com/weewx-mqtt/subscribe?tab=readme-ov-file#initialize-mqttsubscribes-runtime).
+1. [Initialize MQTTSubscribe's runtime](readme.md#initialize-mqttsubscribes-runtime).
 2. Export the current configuration settings.
 
     ```
-    python3 $USER_ROOT/MQTTSubscribe.py configure $RUN_MODE --export mqttsubscribe.template.conf --conf $CONFIG_FILE
+    PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe configure $RUN_MODE --export mqttsubscribe.template.conf --conf $CONFIG_FILE
     ```
 
 3. Follow the diections to
-    * [Configure MQTTSunscribe](https://github.com/weewx-mqtt/subscribe#configure-mqttsubscribe)
-    * [Validate and test the configuration](https://github.com/weewx-mqtt/subscribe?tab=readme-ov-file#Validate-and-test-the-configuration)
+    * [Configure MQTTSunscribe](readme.md#configure-mqttsubscribe)
+    * [Validate and test the configuration](readme.md#Validate-and-test-the-configuration)
 4. Stop WeeWX
-5. [Update WeeWX](https://github.com/weewx-mqtt/subscribe?tab=readme-ov-file#update-weewxconf)
+5. [Update WeeWX](readme.md#update-weewxconf)
 6. Restart WeeWX
 
 ## Debugging

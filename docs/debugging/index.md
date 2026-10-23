@@ -14,7 +14,7 @@ After [initializing MQTTSubscribes context](https://github.com/weewx-mqtt/subscr
 the invocation would look something like this.
 
 ```
-python3 $USER_ROOT/MQTTSubscribe.py simulate $RUN_MODE --conf mqttsubscribe.template.conf --verbose --logging-file=log.txt
+PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe simulate $RUN_MODE --conf mqttsubscribe.template.conf --verbose --logging-file=log.txt
 ```
 
 Below is information that one can use to debugging.
@@ -35,7 +35,7 @@ Initialize MQTT
     start secondary thread
 
 MQTTSubscribeDriver secondary thread processing
-   receive message, 
+   receive message,
    transform data as necessary
    put data on a queue (each topic has its own queue)
 
@@ -90,10 +90,10 @@ Initialize MQTT
     start secondary thread
 
 MQTTSubscribeService secondary thread processing
-   receive message, 
+   receive message,
    transform data as necessary
    put data on a queue (each topic has its own queue)
-   
+
 MQTTSubscribeService primary thread
     Called by WeeWX to augment loop packet
     For each queue

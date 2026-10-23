@@ -177,7 +177,7 @@ If omitted, the section name is used as the message id.
 Used to configure additional observations and units for WeeWX to use.
 See, [https://weewx.com/docs/5.0/custom/units/#creating-a-new-unit-group](https://weewx.com/docs/5.0/custom/units/#creating-a-new-unit-group)
 This assumes a good knowledge of customizing WeeWX.
-An example can be found [here](Customizing-units-and-unit-groups.md).
+An example can be found [here](../example-unit-unitgroup/index.md).
 
 ### The `[[[observations]]]` section
 

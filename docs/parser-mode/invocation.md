@@ -7,5 +7,5 @@ nav_order: 2
 ## Invocation
 
 ```
-python3 $USER_ROOT/MQTTSubscribe.py parse $RUN_MODE --help
+PYTHONPATH="$WEEWX_ROOT/bin${PYTHONPATH:+:$PYTHONPATH}" python3 -m user.mqttsubscribe parse $RUN_MODE --help
 ```

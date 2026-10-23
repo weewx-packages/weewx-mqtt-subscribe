@@ -4,36 +4,14 @@ parent: Deprecated Documentation
 nav_order: 4
 ---
 
-**Removed in version 3**
+# Historical standalone mode
 
-The driver can be run in "standalone" mode.
-In this mode, the MQTT data is processed but not written to the database.
-This enables one to debug without corrupting the data in the database.
-Depending on one's comfort level with python and weewx,
-MQTTSubscribe could be run in this mode prior to installation to determine the correct configuration options.
+Standalone mode was removed in version 3. Use the
+[current installation guide](../readme.md) and
+[current simulator invocation](../simulator-mode/invocation.md) for the
+catalog package. The installed module is `user.mqttsubscribe`.
 
-Assuming that MQTTSubscribe has been installed as a driver, the typical invocation would be something like  
-
-```bash
-PYTHONPATH=$BIN_ROOT python $BIN_ROOT/user/MQTTSubscribe.py <options> $CONFIG_ROOT/weewx.conf
-```  
-
-where:  
-$BIN_ROOT - The directory where WeeWX executables are located.  
-$CONFIG_ROOT - The directory where the configuration (typically, weewx.conf) is located.  
-Because there are [multiple methods to install WeeWX](https://weewx.com/docs/5.0/usersguide/installing/#installation-methods#installation_methods),
-location of files can vary. See [where to find things](https://weewx.com/docs/5.0/usersguide/where/)
-in the WeeWX [User's Guide](https://weewx.com/docs/5.0/usersguide/introduction/) for the definitive information.
-
-and \<options\> might be:  
-
-```bash
---type=driver --binding=loop --records=2  
-```  
-
-where:  
---type=driver, says to run MQTTSubscribeDriver.  
---binding=loop, says that MQTTSubscribeDriver is bound to loop and therefore loop packets will be generated.  
---records=2, says to exit after 2 loop packets have been created.  
-  
-Run MQTTSubscribe.py with --help to see all the command line options.
+The original explanation remains available in the
+[upstream historical document](https://github.com/weewx-mqtt/subscribe/blob/35068866003ab045dcf721fbccdd6dc82fb60b57/docs/deprecated-documentation/Running-as-a-driver-in-standalone-mode.md).
+Its uppercase module name and old standalone flags do not apply to the
+catalog prerelease.
