@@ -6,7 +6,10 @@ nav_order: 3
 
 **Deprecated in version 3.0, use [simulation mode]({{site.baseurl}}/simulator-mode).**
 
-This can be retrieved via the command, `wget https://github.com/weewx-mqtt/subscribe/blob/master/mqtt_test.py`
+This page describes the historical `mqtt_test.py` utility. For the current
+catalog distribution, install its dependencies and archive using the
+[README](../../README.md#install), then use
+[simulation mode](../simulator-mode/invocation.md).
 
 This is a small utility that can help debug problems when running MQTTSubscribe.
 It reads the WeeWX configuration file (typically weewx.conf) for the necessary MQTT options to connect and subscribe to the topics.

@@ -12,11 +12,21 @@ Its suffix normalizes the installer version; runtime code is unchanged.
 
 ## Install
 
+For a pip installation, activate the existing virtual environment that runs
+your WeeWX service before running these commands. Both `python` and `weectl`
+must come from that environment. For a distribution package installation, use
+its `weectl`, with `sudo` if required. Add `--config /path/to/weewx.conf` to the
+extension command when your station configuration is not found automatically.
+
+For Debian or Raspberry Pi OS package installations, use
+`sudo apt install python3-paho-mqtt` instead of pip. The pip command below is
+for WeeWX running in its existing virtual environment.
+
 Use WeeWX 5.5–5.x and Python 3.10–3.14 for the catalog archive. Install the Paho
 client in WeeWX's Python environment:
 
 ```sh
-python -m pip install paho-mqtt
+python -m pip install 'paho-mqtt'
 ```
 
 Install the published archive with WeeWX 5's extension installer:
@@ -25,12 +35,9 @@ Install the published archive with WeeWX 5's extension installer:
 weectl extension install https://github.com/weewx-packages/catalog/releases/download/mqtt-subscribe/v3.2.1rc1.post20261022/mqtt-subscribe-3.2.1rc1.post20261022.tar.gz
 ```
 
-Use the `weectl` from your WeeWX environment. Add
-`--config /path/to/weewx.conf` when the station configuration is not found
-automatically. Package installations may require `sudo`; activate the WeeWX
-virtual environment for pip installations. Restart your WeeWX service after
-configuration, for example `sudo systemctl restart weewx` on systemd.
-The installer does not restart it for you.
+Restart your WeeWX service after configuration, for example
+`sudo systemctl restart weewx` on systemd. The installer does not restart it
+for you.
 
 The installer copies `bin/user/mqttsubscribe.py`, registers
 `user.mqttsubscribe.MQTTSubscribeService` in `data_services`, and creates driver

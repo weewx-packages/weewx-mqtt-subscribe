@@ -38,12 +38,12 @@ Assumes that a WeeWX install in weewx directory is a sibling directory to this p
 I find it useful to symlink the weewx directory to a specific version of weewx.
 This allows easily running against different WeeWX versions.
 
-Testing
-pip install mock
-pip3 install mock
+For development checks, activate your existing WeeWX virtual environment
+before installing test tools:
 
-sudo pip install coverage
-sudo pip3 install coverage
+```sh
+python -m pip install 'mock' 'coverage'
+```
 
 Debugging specific  MQTT payloads
 use pubmqtt.py to publish the payload

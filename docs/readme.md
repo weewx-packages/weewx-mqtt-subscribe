@@ -91,6 +91,11 @@ RUN_MODE=service
 
 #### For pip and git installs - activate the environment
 
+The paths in these examples assume an existing WeeWX environment at
+`~/weewx-venv` and station at `~/weewx-data`. Replace them with the paths
+used by your running WeeWX service. The git layout also assumes your existing
+WeeWX source checkout is at `~/weewx`.
+
 ```
 source ~/weewx-venv/bin/activate
 ```
@@ -129,7 +134,16 @@ WEECTL=$WEEWX_REPO/bin/weectl
 
 ### Install MQTTSubscribe
 
-Use the repaired catalog prerelease with stock WeeWX 5:
+Install Paho in the Python environment running WeeWX before installing the
+extension. For a pip installation, with that existing environment active:
+
+```sh
+python -m pip install 'paho-mqtt'
+```
+
+For a Debian or Raspberry Pi OS package installation, use
+`sudo apt install python3-paho-mqtt` instead of pip. Use the repaired catalog
+prerelease with stock WeeWX 5, adding `sudo` for a package install if required:
 
 ```sh
 $WEECTL extension install https://github.com/weewx-packages/catalog/releases/download/mqtt-subscribe/v3.2.1rc1.post20261022/mqtt-subscribe-3.2.1rc1.post20261022.tar.gz --config "$CONFIG_FILE"
